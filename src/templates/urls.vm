@@ -1,0 +1,5 @@
+categories, layout/level1.vm
+categories/${level1}, layout/level2.vm
+categories/${level1}/${level2}, layout/level3.vm
+products/${level1}/${level2}/${level3}, layout/products.vm
+product/${id}, layout/product.vm
