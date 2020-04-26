@@ -27,8 +27,21 @@
       <div class="sidebar-heading">Categories </div>
       <div class="list-group list-group-flush">
 
-        #foreach( $nestedSubCat in $nestedSubCats )
-            <a href="/categories/${activeCat}/${activeSubCat}/${nestedSubCat}.html" class="list-group-item list-group-item-action bg-light">$nestedSubCat</a>
+        #foreach( $cat in $cats )
+            <a href="/categories/${cat}.html" class="list-group-item list-group-item-action bg-light">$cat</a>
+        #end
+
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" class="sidebar-wrapper">
+      <div class="sidebar-heading">Sub Categories</div>
+      <div class="list-group list-group-flush">
+
+        #foreach( $subCat in $subCats )
+            <a href="/categories/${activeCat}/${subCat}.html" class="list-group-item list-group-item-action bg-light">$subCat</a>
         #end
 
       </div>
@@ -66,14 +79,8 @@
 
       <div class="container-fluid">
         <h1 class="mt-4">Test website</h1>
-        <p>Products</p>
-        <div class="list-group list-group-flush">
+        <p>Offers and stuff</p>
 
-        #foreach( $productId in $productIds )
-            <a href="/product/${productId}.html" class="list-group-item list-group-item-action bg-light">$productId</a>
-        #end
-
-        </div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->

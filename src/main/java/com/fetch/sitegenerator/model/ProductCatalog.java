@@ -1,32 +1,50 @@
 package com.fetch.sitegenerator.model;
 
-public class ProductCatalog {
+import java.io.Serializable;
 
-    String level1;
-    String level2;
-    String level3;
+public class ProductCatalog implements Serializable {
 
-    public String getLevel1() {
-        return level1;
+    String cat;
+    String subCat;
+    String nestedSubCat;
+    long catId;
+
+    public ProductCatalog(String cat, String subCat, String nestedSubCat, long catId){
+        this.cat = cat;
+        this.subCat = subCat;
+        this.nestedSubCat = nestedSubCat;
+        this.catId = catId;
     }
 
-    public void setLevel1(String level1) {
-        this.level1 = level1;
+    public long getCatId() {
+        return catId;
     }
 
-    public String getLevel2() {
-        return level2;
+    public void setCatId(long catId) {
+        this.catId = catId;
     }
 
-    public void setLevel2(String level2) {
-        this.level2 = level2;
+    public String getCat() {
+        return cat;
     }
 
-    public String getLevel3() {
-        return level3;
+    public void setCat(String cat) {
+        this.cat = cat;
     }
 
-    public void setLevel3(String level3) {
-        this.level3 = level3;
+    public String getSubCat() {
+        return subCat;
+    }
+
+    public void setSubCat(String subCat) {
+        this.subCat = subCat;
+    }
+
+    public String getNestedSubCat() {
+        return nestedSubCat;
+    }
+
+    public void setNestedSubCat(String nestedSubCat) {
+        this.nestedSubCat = nestedSubCat;
     }
 }
