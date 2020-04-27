@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Fetch Marketplace</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right sidebar-wrapper">
+      <div class="sidebar-heading"><a href="/categories/grocery/alcohol.html">Previous Categories</a></div>
+      <div class="list-group list-group-flush">
+
+                    <a href="/categories/grocery/alcohol/beers coolers.html" class="list-group-item list-group-item-action bg-light">beers coolers</a>
+                    <a href="/categories/grocery/alcohol/red wines.html" class="list-group-item list-group-item-action bg-light">red wines</a>
+                    <a href="/categories/grocery/alcohol/specialty wines champagnes.html" class="list-group-item list-group-item-action bg-light">specialty wines champagnes</a>
+                    <a href="/categories/grocery/alcohol/spirits.html" class="list-group-item list-group-item-action bg-light">spirits</a>
+                    <a href="/categories/grocery/alcohol/white wines.html" class="list-group-item list-group-item-action bg-light">white wines</a>
+        
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cart.html">Shopping Cart</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Products</h1>
+
+        <div class="list-group list-group-flush">
+
+                    <a href="/product/625.html" class="list-group-item list-group-item-action bg-light">Mixed 12 Pack Lion's Share Ale</a>
+            <br/>
+            <a href="#" class="product" id="625" >Add to cart</a>
+                    <a href="/product/194.html" class="list-group-item list-group-item-action bg-light">Clamato Chelada Beer</a>
+            <br/>
+            <a href="#" class="product" id="194" >Add to cart</a>
+                    <a href="/product/100.html" class="list-group-item list-group-item-action bg-light">Born Yesterday Pale Ale</a>
+            <br/>
+            <a href="#" class="product" id="100" >Add to cart</a>
+                    <a href="/product/567.html" class="list-group-item list-group-item-action bg-light">Lite Beer</a>
+            <br/>
+            <a href="#" class="product" id="567" >Add to cart</a>
+                    <a href="/product/1160.html" class="list-group-item list-group-item-action bg-light">Villager Ipa</a>
+            <br/>
+            <a href="#" class="product" id="1160" >Add to cart</a>
+                    <a href="/product/137.html" class="list-group-item list-group-item-action bg-light">Cerveza Especial Imported Beer From Mexico</a>
+            <br/>
+            <a href="#" class="product" id="137" >Add to cart</a>
+                    <a href="/product/490.html" class="list-group-item list-group-item-action bg-light">Hop Devil IPA</a>
+            <br/>
+            <a href="#" class="product" id="490" >Add to cart</a>
+                    <a href="/product/1034.html" class="list-group-item list-group-item-action bg-light">Super Dry Beer</a>
+            <br/>
+            <a href="#" class="product" id="1034" >Add to cart</a>
+                    <a href="/product/797.html" class="list-group-item list-group-item-action bg-light">Pear Hard Cider</a>
+            <br/>
+            <a href="#" class="product" id="797" >Add to cart</a>
+                    <a href="/product/78.html" class="list-group-item list-group-item-action bg-light">Beer, IPA</a>
+            <br/>
+            <a href="#" class="product" id="78" >Add to cart</a>
+                    <a href="/product/607.html" class="list-group-item list-group-item-action bg-light">Micro Craft Beer</a>
+            <br/>
+            <a href="#" class="product" id="607" >Add to cart</a>
+                    <a href="/product/815.html" class="list-group-item list-group-item-action bg-light">Pils</a>
+            <br/>
+            <a href="#" class="product" id="815" >Add to cart</a>
+        
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+    $(".product").click(function(){
+
+            var productId =  $(this).attr('id');
+            alert('Clicked on ' + productId);
+            $.get("http://localhost:8086/public/api/v1/cart/ip", function(data, status){
+                alert('Your IP is ' + data );
+                $.post("http://localhost:8086/public/api/v1/cart/add", {'userIdentifier': data, 'productId': productId, 'qty': '1'}, function(status){
+                    alert("Status: " + status);
+
+                    $.getJSON('http://localhost:8086/public/api/v1/cart/get', { 'userIdentifier': data }, function(data1) {
+                        alert(JSON.stringify(data1));
+                        $.each(data1, function(index, element) {
+
+                        });
+                    });
+                });
+            });
+        });
+
+  </script>
+
+</body>
+
+</html>

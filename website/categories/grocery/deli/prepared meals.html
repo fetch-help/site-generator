@@ -27,6 +27,10 @@
       <div class="sidebar-heading"><a href="/categories/grocery/deli.html">Previous Categories</a></div>
       <div class="list-group list-group-flush">
 
+                    <a href="/categories/grocery/deli/tofu meat alternatives.html" class="list-group-item list-group-item-action bg-light">tofu meat alternatives</a>
+                    <a href="/categories/grocery/deli/prepared soups salads.html" class="list-group-item list-group-item-action bg-light">prepared soups salads</a>
+                    <a href="/categories/grocery/deli/fresh dips tapenades.html" class="list-group-item list-group-item-action bg-light">fresh dips tapenades</a>
+                    <a href="/categories/grocery/deli/lunch meat.html" class="list-group-item list-group-item-action bg-light">lunch meat</a>
                     <a href="/categories/grocery/deli/prepared meals.html" class="list-group-item list-group-item-action bg-light">prepared meals</a>
         
       </div>
@@ -42,10 +46,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="/cart.html">Shopping Cart</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,14 +67,37 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Test website</h1>
-        <p>Products</p>
+        <h1 class="mt-4">Products</h1>
+
         <div class="list-group list-group-flush">
 
-                    <a href="/product/10.html" class="list-group-item list-group-item-action bg-light">10</a>
-                    <a href="/product/11.html" class="list-group-item list-group-item-action bg-light">11</a>
-                    <a href="/product/12.html" class="list-group-item list-group-item-action bg-light">12</a>
-                    <a href="/product/13.html" class="list-group-item list-group-item-action bg-light">13</a>
+                    <a href="/product/1.html" class="list-group-item list-group-item-action bg-light">AFC Sushi Spicy Salmon Roll Prepared In Store, Ready To Eat</a>
+            <br/>
+            <a href="#" class="product" id="1" >Add to cart</a>
+                    <a href="/product/577.html" class="list-group-item list-group-item-action bg-light">Lunchmakers Pizza Pepperoni with Nestle Crunch Bar</a>
+            <br/>
+            <a href="#" class="product" id="577" >Add to cart</a>
+                    <a href="/product/1106.html" class="list-group-item list-group-item-action bg-light">Turkey Breast Oven Roasted</a>
+            <br/>
+            <a href="#" class="product" id="1106" >Add to cart</a>
+                    <a href="/product/99.html" class="list-group-item list-group-item-action bg-light">Bolani Pumpkin Filled Flatbread</a>
+            <br/>
+            <a href="#" class="product" id="99" >Add to cart</a>
+                    <a href="/product/71.html" class="list-group-item list-group-item-action bg-light">Basil, Asiago & Pine Nut Pesto Ravioli</a>
+            <br/>
+            <a href="#" class="product" id="71" >Add to cart</a>
+                    <a href="/product/247.html" class="list-group-item list-group-item-action bg-light">Cracker Crunchers Bologna with Nestle Butterfinger Bar LunchMakers</a>
+            <br/>
+            <a href="#" class="product" id="247" >Add to cart</a>
+                    <a href="/product/443.html" class="list-group-item list-group-item-action bg-light">Grape Leaf Hummus Wrap</a>
+            <br/>
+            <a href="#" class="product" id="443" >Add to cart</a>
+                    <a href="/product/444.html" class="list-group-item list-group-item-action bg-light">Grape Sunflower Butter Sunwiches</a>
+            <br/>
+            <a href="#" class="product" id="444" >Add to cart</a>
+                    <a href="/product/495.html" class="list-group-item list-group-item-action bg-light">Hummus Wrap</a>
+            <br/>
+            <a href="#" class="product" id="495" >Add to cart</a>
         
         </div>
       </div>
@@ -90,6 +117,26 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+    $(".product").click(function(){
+
+            var productId =  $(this).attr('id');
+            alert('Clicked on ' + productId);
+            $.get("http://localhost:8086/public/api/v1/cart/ip", function(data, status){
+                alert('Your IP is ' + data );
+                $.post("http://localhost:8086/public/api/v1/cart/add", {'userIdentifier': data, 'productId': productId, 'qty': '1'}, function(status){
+                    alert("Status: " + status);
+
+                    $.getJSON('http://localhost:8086/public/api/v1/cart/get', { 'userIdentifier': data }, function(data1) {
+                        alert(JSON.stringify(data1));
+                        $.each(data1, function(index, element) {
+
+                        });
+                    });
+                });
+            });
+        });
+
   </script>
 
 </body>

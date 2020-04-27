@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Application {
@@ -31,20 +32,37 @@ public class Application {
 		ve.init();
 
 		//TODO use the catalog.csv and products.csv
+		List<String> pcats=Files.readAllLines(Paths.get("/home/pt/fetch/site-generator/src/main/resources/catalog.csv"));
+		List<String> prods=Files.readAllLines(Paths.get("/home/pt/fetch/site-generator/src/main/resources/products.csv"));
 		List<ProductCatalog> l = new ArrayList<>();
+		//id,cat,subcat,nestedsubcat
+		for(int i=1; i < pcats.size(); i++){
+			String cols[] = pcats.get(i).split(",");
+			l.add(new ProductCatalog(cols[1], cols[2], cols[3], Long.parseLong(cols[0])));
+		}
+		ProductCatalogDb db = new ProductCatalogDb();
+		db.setPdb(l);
+		/*
 		l.add(new ProductCatalog("grocery", "deli", "prepared meals", 1));
 		l.add(new ProductCatalog("grocery", "beverages", "tea", 2));
 		l.add(new ProductCatalog("grocery", "personal care", "skin care", 3));
 		l.add(new ProductCatalog("grocery", "personal care", "feminine care", 4));
 		l.add(new ProductCatalog("grocery", "pets", "dog food", 5));
-		ProductCatalogDb db = new ProductCatalogDb();
-		db.setPdb(l);
+
+		 */
+		//cat-id|product-name
+		//1|AFC Sushi Spicy Salmon Roll Prepared In Store, Ready To Eat
+		for(int i=1; i < prods.size(); i++) {
+			String cols[] = prods.get(i).split("\\|");
+			db.addProductId(Long.parseLong(cols[0]), cols[1]);
+		}
+		/*
 		db.setProductIds(1L, Arrays.asList(10L, 11L, 12L, 13L));
 		db.setProductIds(2L, Arrays.asList(20L, 21L, 22L, 23L));
 		db.setProductIds(3L, Arrays.asList(30L, 31L, 32L, 33L));
 		db.setProductIds(4L, Arrays.asList(40L, 41L, 42L, 43L));
 		db.setProductIds(5L, Arrays.asList(50L, 51L, 52L, 53L));
-
+		*/
 		String HOME = "/home/pt/fetch/site-generator/website";
 		Set<String> cats = db.getCat();
 		VelocityContext vc = new VelocityContext();
@@ -75,7 +93,8 @@ public class Application {
 
 					Long catId = db.getCatId(cat, subCat, nestedSubCat);
 					List<Long> productIds = db.getProductIds(catId);
-					vc = Urls.getProductsContext(cat, subCat, nestedSubCat, nestedSubCats, productIds);
+					Map<Long, String> products = productIds.stream().collect(Collectors.toMap(p->p, p->db.getProductName(p)));
+					vc = Urls.getProductsContext(cat, subCat, nestedSubCat, nestedSubCats, products);
 					path = Urls.getProductsUrl(cat, subCat, nestedSubCat);
 
 					if(!new File(HOME, path).exists()) {
@@ -88,7 +107,8 @@ public class Application {
 						Files.createDirectory(new File(HOME, "product").toPath());
 					}
 					for(Long productId: productIds){
-						vc = Urls.getProductContext(cat, subCat, nestedSubCat, nestedSubCats, productId);
+						vc = Urls.getProductContext(cat, subCat, nestedSubCat, nestedSubCats,
+								db.getProductName(productId), productId);
 						path = Urls.getProductUrl(productId);
 						doHtml(ve, Urls.product.getLayout(), vc, HOME + "/" + path + ".html");
 					}
@@ -97,6 +117,7 @@ public class Application {
 			}
 		}
 
+		doHtml(ve, Urls.cart.getLayout(), vc, HOME + "/cart.html");
 
 	}
 

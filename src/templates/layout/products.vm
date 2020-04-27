@@ -44,10 +44,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="/cart.html">Shopping Cart</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,12 +65,14 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Test website</h1>
-        <p>Products</p>
+        <h1 class="mt-4">Products</h1>
+
         <div class="list-group list-group-flush">
 
-        #foreach( $productId in $productIds )
-            <a href="/product/${productId}.html" class="list-group-item list-group-item-action bg-light">$productId</a>
+        #foreach( $productId in $products.keySet() )
+            <a href="/product/${productId}.html" class="list-group-item list-group-item-action bg-light">$products.get($productId)</a>
+            <br/>
+            <a href="#" class="product" id="${productId}" >Add to cart</a>
         #end
 
         </div>
@@ -91,6 +93,26 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+    $(".product").click(function(){
+
+            var productId =  $(this).attr('id');
+            alert('Clicked on ' + productId);
+            $.get("http://localhost:8086/public/api/v1/cart/ip", function(data, status){
+                alert('Your IP is ' + data );
+                $.post("http://localhost:8086/public/api/v1/cart/add", {'userIdentifier': data, 'productId': productId, 'qty': '1'}, function(status){
+                    alert("Status: " + status);
+
+                    $.getJSON('http://localhost:8086/public/api/v1/cart/get', { 'userIdentifier': data }, function(data1) {
+                        alert(JSON.stringify(data1));
+                        $.each(data1, function(index, element) {
+
+                        });
+                    });
+                });
+            });
+        });
+
   </script>
 
 </body>

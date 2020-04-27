@@ -3,6 +3,7 @@ package com.fetch.sitegenerator;
 import org.apache.velocity.VelocityContext;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public enum Urls {
@@ -11,7 +12,8 @@ public enum Urls {
     subCat("categories/${cat}","layout/subCat.vm"),
     nestedSubCat("categories/${cat}/${subCat}","layout/nestedSubCat.vm"),
     products("categories/${cat}/${subCat}/${nestedSubCat}","layout/products.vm"),
-    product("product/${id}", "layout/product.vm");
+    product("product/${id}", "layout/product.vm"),
+    cart("cart", "layout/cart.vm");
 
 
     Urls(String pattern, String layout){
@@ -58,24 +60,26 @@ public enum Urls {
 
     public static VelocityContext getProductsContext(String activeCat, String activeSubCat, String activeNestedSubCat,
                                                         Set<String> nestedSubCat,
-                                                         List<Long> productIds){
+                                                         Map<Long, String> products){
         VelocityContext vc = new VelocityContext();
         vc.put("activeCat", activeCat);
         vc.put("activeSubCat", activeSubCat);
         vc.put("activeNestedSubCat", activeNestedSubCat);
         vc.put("nestedSubCats", nestedSubCat);
-        vc.put("productIds", productIds);
+        vc.put("products", products);
         return vc;
     }
 
     public static VelocityContext getProductContext(String activeCat, String activeSubCat, String activeNestedSubCat,
                                                      Set<String> nestedSubCat,
+                                                     String activeProductName,
                                                      Long productId){
         VelocityContext vc = new VelocityContext();
         vc.put("activeCat", activeCat);
         vc.put("activeSubCat", activeSubCat);
         vc.put("activeNestedSubCat", activeNestedSubCat);
         vc.put("nestedSubCats", nestedSubCat);
+        vc.put("activeProductName", activeProductName);
         vc.put("activeProductId", productId);
         return vc;
     }

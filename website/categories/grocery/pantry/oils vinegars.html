@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Fetch Marketplace</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right sidebar-wrapper">
+      <div class="sidebar-heading"><a href="/categories/grocery/pantry.html">Previous Categories</a></div>
+      <div class="list-group list-group-flush">
+
+                    <a href="/categories/grocery/pantry/spices seasonings.html" class="list-group-item list-group-item-action bg-light">spices seasonings</a>
+                    <a href="/categories/grocery/pantry/spreads.html" class="list-group-item list-group-item-action bg-light">spreads</a>
+                    <a href="/categories/grocery/pantry/condiments.html" class="list-group-item list-group-item-action bg-light">condiments</a>
+                    <a href="/categories/grocery/pantry/doughs gelatins bake mixes.html" class="list-group-item list-group-item-action bg-light">doughs gelatins bake mixes</a>
+                    <a href="/categories/grocery/pantry/baking supplies decor.html" class="list-group-item list-group-item-action bg-light">baking supplies decor</a>
+                    <a href="/categories/grocery/pantry/pickled goods olives.html" class="list-group-item list-group-item-action bg-light">pickled goods olives</a>
+                    <a href="/categories/grocery/pantry/oils vinegars.html" class="list-group-item list-group-item-action bg-light">oils vinegars</a>
+                    <a href="/categories/grocery/pantry/baking ingredients.html" class="list-group-item list-group-item-action bg-light">baking ingredients</a>
+                    <a href="/categories/grocery/pantry/honeys syrups nectars.html" class="list-group-item list-group-item-action bg-light">honeys syrups nectars</a>
+                    <a href="/categories/grocery/pantry/salad dressing toppings.html" class="list-group-item list-group-item-action bg-light">salad dressing toppings</a>
+                    <a href="/categories/grocery/pantry/marinades meat preparation.html" class="list-group-item list-group-item-action bg-light">marinades meat preparation</a>
+                    <a href="/categories/grocery/pantry/preserved dips spreads.html" class="list-group-item list-group-item-action bg-light">preserved dips spreads</a>
+        
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cart.html">Shopping Cart</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+        <h1 class="mt-4">Products</h1>
+
+        <div class="list-group list-group-flush">
+
+                    <a href="/product/370.html" class="list-group-item list-group-item-action bg-light">French  Tarragon Wine Vinegar</a>
+            <br/>
+            <a href="#" class="product" id="370" >Add to cart</a>
+                    <a href="/product/947.html" class="list-group-item list-group-item-action bg-light">Sherry Reserve Vinegar</a>
+            <br/>
+            <a href="#" class="product" id="947" >Add to cart</a>
+                    <a href="/product/775.html" class="list-group-item list-group-item-action bg-light">Original No-Stick Cooking Spray</a>
+            <br/>
+            <a href="#" class="product" id="775" >Add to cart</a>
+                    <a href="/product/1161.html" class="list-group-item list-group-item-action bg-light">Vinegar Balsamic</a>
+            <br/>
+            <a href="#" class="product" id="1161" >Add to cart</a>
+                    <a href="/product/892.html" class="list-group-item list-group-item-action bg-light">Reg; Organic Apple Cider Vinegar 16 Fl Oz</a>
+            <br/>
+            <a href="#" class="product" id="892" >Add to cart</a>
+        
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
+    $(".product").click(function(){
+
+            var productId =  $(this).attr('id');
+            alert('Clicked on ' + productId);
+            $.get("http://localhost:8086/public/api/v1/cart/ip", function(data, status){
+                alert('Your IP is ' + data );
+                $.post("http://localhost:8086/public/api/v1/cart/add", {'userIdentifier': data, 'productId': productId, 'qty': '1'}, function(status){
+                    alert("Status: " + status);
+
+                    $.getJSON('http://localhost:8086/public/api/v1/cart/get', { 'userIdentifier': data }, function(data1) {
+                        alert(JSON.stringify(data1));
+                        $.each(data1, function(index, element) {
+
+                        });
+                    });
+                });
+            });
+        });
+
+  </script>
+
+</body>
+
+</html>
