@@ -30,6 +30,7 @@ public class Application {
 		VelocityEngine ve = new VelocityEngine(props);
 		ve.init();
 
+		//TODO use the catalog.csv and products.csv
 		List<ProductCatalog> l = new ArrayList<>();
 		l.add(new ProductCatalog("grocery", "deli", "prepared meals", 1));
 		l.add(new ProductCatalog("grocery", "beverages", "tea", 2));

@@ -1,0 +1,131 @@
+id,cat,subcat,nestedsubcat
+1,grocery,deli,prepared meals
+2,grocery,beverages,tea
+3,grocery,personal care,skin care
+4,grocery,personal care,feminine care
+5,grocery,pets,dog food care
+6,grocery,personal care,deodorants
+7,grocery,personal care,hair care
+8,grocery,other,other
+9,grocery,dairy eggs,specialty cheeses
+10,grocery,household,air fresheners candles
+11,grocery,canned goods,canned meat seafood
+12,grocery,pantry,spices seasonings
+13,grocery,frozen,frozen vegan vegetarian
+14,grocery,beverages,juice nectars
+15,grocery,beverages,refrigerated
+16,grocery,frozen,frozen meat seafood
+17,grocery,pantry,baking ingredients
+18,grocery,snacks,candy chocolate
+19,grocery,breakfast,hot cereal pancake mixes
+20,grocery,dairy eggs,soy lactosefree
+21,grocery,personal care,vitamins supplements
+22,grocery,snacks,energy granola bars
+23,grocery,pantry,spreads
+24,grocery,snacks,nuts seeds dried fruit
+25,grocery,breakfast,cereal
+26,grocery,dairy eggs,packaged cheese
+27,grocery,snacks,fruit vegetable snacks
+28,grocery,personal care,digestion
+29,grocery,personal care,body lotions soap
+30,grocery,personal care,soap
+31,grocery,canned goods,canned fruit applesauce
+32,grocery,household,plates bowls cups flatware
+33,grocery,bulk,bulk dried fruits vegetables
+34,grocery,personal care,beauty
+35,grocery,produce,packaged vegetables fruits
+36,grocery,deli,tofu meat alternatives
+37,grocery,frozen,frozen breads doughs
+38,grocery,frozen,ice cream ice
+39,grocery,frozen,frozen pizza
+40,grocery,personal care,muscles joints pain relief
+41,grocery,household,laundry
+42,grocery,household,cleaning products
+43,grocery,babies,baby food formula
+44,grocery,household,paper goods
+45,grocery,pantry,marinades meat preparation
+46,grocery,babies,diapers wipes
+47,grocery,missing,missing
+48,grocery,snacks,crackers
+49,grocery,dairy eggs,other creams cheeses
+50,grocery,frozen,frozen breakfast
+51,grocery,international,asian foods
+52,grocery,meat seafood,hot dogs bacon sausage
+53,grocery,frozen,frozen meals
+54,grocery,alcohol,beers coolers
+55,grocery,bakery,bread
+56,grocery,dairy eggs,yogurt
+57,grocery,beverages,coffee
+58,grocery,bakery,breakfast bakery
+59,grocery,frozen,frozen produce
+60,grocery,alcohol,specialty wines champagnes
+61,grocery,dairy eggs,butter
+62,grocery,frozen,frozen appetizers sides
+63,grocery,snacks,popcorn jerky
+64,grocery,alcohol,red wines
+65,grocery,household,kitchen supplies
+66,grocery,produce,fresh fruits
+67,grocery,snacks,ice cream toppings
+68,grocery,deli,lunch meat
+69,grocery,pets,cat food care
+70,grocery,personal care,oral hygiene
+71,grocery,alcohol,white wines
+72,grocery,snacks,trail mix snack mix
+73,grocery,dry goods pasta,pasta sauce
+74,grocery,bakery,bakery desserts
+75,grocery,beverages,soft drinks
+76,grocery,snacks,chips pretzels
+77,grocery,canned goods,soup broth bouillon
+78,grocery,personal care,cold flu allergy
+79,grocery,international,latino foods
+80,grocery,snacks,cookies cakes
+81,grocery,pantry,baking supplies decor
+82,grocery,frozen,frozen dessert
+83,grocery,dry goods pasta,instant foods
+84,grocery,pantry,salad dressing toppings
+85,grocery,deli,fresh dips tapenades
+86,grocery,household,dish detergents
+87,grocery,household,more household
+88,grocery,personal care,facial care
+89,grocery,alcohol,spirits
+90,grocery,meat seafood,seafood counter
+91,grocery,canned goods,canned meals beans
+92,grocery,dry goods pasta,grains rice dried goods
+93,grocery,canned goods,canned jarred vegetables
+94,grocery,dairy eggs,cream
+95,grocery,breakfast,breakfast bars pastries
+96,grocery,beverages,energy sports drinks
+97,grocery,pantry,condiments
+98,grocery,dry goods pasta,dry pasta
+99,grocery,personal care,shave needs
+100,grocery,bakery,tortillas flat bread
+101,grocery,produce,fresh vegetables
+102,grocery,snacks,mint gum
+103,grocery,household,food storage
+104,grocery,pantry,oils vinegars
+105,grocery,bakery,buns rolls
+106,grocery,personal care,eye ear care
+107,grocery,pantry,pickled goods olives
+108,grocery,pantry,doughs gelatins bake mixes
+109,grocery,pantry,preserved dips spreads
+110,grocery,breakfast,granola
+111,grocery,personal care,protein meal replacements
+112,grocery,produce,fresh herbs
+113,grocery,personal care,first aid
+114,grocery,meat seafood,packaged seafood
+115,grocery,international,kosher foods
+116,grocery,deli,prepared soups salads
+117,grocery,beverages,water seltzer sparkling water
+118,grocery,meat seafood,meat counter
+119,grocery,meat seafood,packaged meat
+120,grocery,beverages,cocoa drink mixes
+121,grocery,meat seafood,packaged poultry
+122,grocery,dairy eggs,refrigerated pudding desserts
+123,grocery,household,trash bags liners
+124,grocery,dairy eggs,milk
+125,grocery,pantry,honeys syrups nectars
+126,grocery,meat seafood,poultry counter
+127,grocery,babies,baby bath body care
+128,grocery,dry goods pasta,fresh pasta
+129,grocery,babies,baby accessories
+130,grocery,bulk,bulk grains rice dried goods
