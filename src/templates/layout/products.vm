@@ -23,8 +23,8 @@
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" class="sidebar-wrapper">
-      <div class="sidebar-heading">Categories </div>
+    <div class="bg-light border-right sidebar-wrapper">
+      <div class="sidebar-heading"><a href="/categories/${activeCat}/${activeSubCat}.html">Previous Categories</a></div>
       <div class="list-group list-group-flush">
 
         #foreach( $nestedSubCat in $nestedSubCats )

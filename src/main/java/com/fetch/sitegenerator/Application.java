@@ -83,6 +83,15 @@ public class Application {
 
 					doHtml(ve, Urls.products.getLayout(), vc, HOME + "/" + path + ".html");
 
+					if(!new File(HOME, "product").exists()) {
+						Files.createDirectory(new File(HOME, "product").toPath());
+					}
+					for(Long productId: productIds){
+						vc = Urls.getProductContext(cat, subCat, nestedSubCat, nestedSubCats, productId);
+						path = Urls.getProductUrl(productId);
+						doHtml(ve, Urls.product.getLayout(), vc, HOME + "/" + path + ".html");
+					}
+
 				}
 			}
 		}

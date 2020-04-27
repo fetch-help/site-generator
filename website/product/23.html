@@ -24,10 +24,10 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right sidebar-wrapper">
-      <div class="sidebar-heading"><a href="/categories/grocery/pets.html">Previous Categories</a></div>
+      <div class="sidebar-heading"><a href="/categories/grocery/beverages/tea.html">Categories</a></div>
       <div class="list-group list-group-flush">
 
-                    <a href="/categories/grocery/pets/dog food.html" class="list-group-item list-group-item-action bg-light">dog food</a>
+                    <a href="/categories/grocery/beverages/tea.html" class="list-group-item list-group-item-action bg-light">tea</a>
         
       </div>
     </div>
@@ -63,15 +63,11 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Test website</h1>
-        <p>Products</p>
+        <h1 class="mt-4">Product Details</h1>
         <div class="list-group list-group-flush">
 
-                    <a href="/product/50.html" class="list-group-item list-group-item-action bg-light">50</a>
-                    <a href="/product/51.html" class="list-group-item list-group-item-action bg-light">51</a>
-                    <a href="/product/52.html" class="list-group-item list-group-item-action bg-light">52</a>
-                    <a href="/product/53.html" class="list-group-item list-group-item-action bg-light">53</a>
-        
+        <a href="#" class="product" id="23" >Add 23 to cart</a>
+
         </div>
       </div>
     </div>
@@ -90,6 +86,26 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+    $(".product").click(function(){
+
+        var productId =  $(this).attr('id');
+        alert('Clicked on ' + productId);
+        $.get("http://localhost:8086/public/api/v1/cart/ip", function(data, status){
+            alert('Your IP is ' + data );
+            $.post("http://localhost:8086/public/api/v1/cart/add", {'userIdentifier': data, 'productId': productId, 'qty': '1'}, function(status){
+                alert("Status: " + status);
+
+                $.getJSON('http://localhost:8086/public/api/v1/cart/get', { 'userIdentifier': data }, function(data1) {
+                    alert(JSON.stringify(data1));
+                    $.each(data1, function(index, element) {
+
+                    });
+                });
+            });
+        });
+    });
+
   </script>
 
 </body>

@@ -33,6 +33,10 @@ public enum Urls {
         return products.getPattern().replace("${cat}/${subCat}/${nestedSubCat}", cat+"/"+subCat+"/"+nestedSubCat);
     }
 
+    public static String getProductUrl(Long productId){
+        return product.getPattern().replace("${id}", productId.toString());
+    }
+
     public static VelocityContext getSubCatContext(String activeCat, Set<String> cat, Set<String> subCat){
         VelocityContext vc = new VelocityContext();
         vc.put("activeCat", activeCat);
@@ -61,6 +65,18 @@ public enum Urls {
         vc.put("activeNestedSubCat", activeNestedSubCat);
         vc.put("nestedSubCats", nestedSubCat);
         vc.put("productIds", productIds);
+        return vc;
+    }
+
+    public static VelocityContext getProductContext(String activeCat, String activeSubCat, String activeNestedSubCat,
+                                                     Set<String> nestedSubCat,
+                                                     Long productId){
+        VelocityContext vc = new VelocityContext();
+        vc.put("activeCat", activeCat);
+        vc.put("activeSubCat", activeSubCat);
+        vc.put("activeNestedSubCat", activeNestedSubCat);
+        vc.put("nestedSubCats", nestedSubCat);
+        vc.put("activeProductId", productId);
         return vc;
     }
 
