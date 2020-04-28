@@ -125,16 +125,18 @@
       $("#wrapper").toggleClass("toggled");
     });
 
+
     $(".product").click(function(){
 
             var productId =  $(this).attr('id');
             alert('Clicked on ' + productId);
-            $.get("http://localhost:8086/public/api/v1/cart/ip", function(data, status){
-                alert('Your IP is ' + data );
-                $.post("http://localhost:8086/public/api/v1/cart/add", {'userIdentifier': data, 'productId': productId, 'qty': '1'}, function(status){
+            $.get("/public/api/v1/cart/ip", function(data, status){
+                alert('Your session id is ' + data );
+
+                $.post("/public/api/v1/cart/add", {'productId': productId, 'qty': '1'}, function(status){
                     alert("Status: " + status);
 
-                    $.getJSON('http://localhost:8086/public/api/v1/cart/get', { 'userIdentifier': data }, function(data1) {
+                    $.getJSON('/public/api/v1/cart/get', { }, function(data1) {
                         alert(JSON.stringify(data1));
                         $.each(data1, function(index, element) {
 

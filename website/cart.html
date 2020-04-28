@@ -88,9 +88,9 @@
       $("#wrapper").toggleClass("toggled");
     });
 
-    $.get("http://localhost:8086/public/api/v1/cart/ip", function(data, status){
-        alert('Your IP is ' + data );
-        $.getJSON('http://localhost:8086/public/api/v1/cart/get', { 'userIdentifier': data }, function(data1) {
+    $.get("/public/api/v1/cart/ip", function(data, status){
+        alert('Your session id is ' + data );
+        $.getJSON('/public/api/v1/cart/get', { }, function(data1) {
             alert(JSON.stringify(data1));
             $.each(data1, function(index, element) {
                 $('#basket').append('<a href="/product/' + element.productId + '.html">' + element.productId + ',' + element.quantity +'</a>');
