@@ -24,7 +24,7 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right sidebar-wrapper">
-      <div class="sidebar-heading">Fetch </div>
+      <div class="sidebar-heading"><a href="/index.html">Fetch</a> </div>
       <div class="list-group list-group-flush">
 
         
@@ -87,10 +87,10 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
-
-    $.get("/public/api/v1/cart/ip", function(data, status){
+    $.get("/public/api/v1/cart/ip", {"time": new Date().getTime() }, function(data, status){
         alert('Your session id is ' + data );
-        $.getJSON('/public/api/v1/cart/get', { }, function(data1) {
+        var time = new Date().getTime();
+        $.getJSON('/public/api/v1/cart/get', {"id": data, "time": new Date().getTime() }, function(data1) {
             alert(JSON.stringify(data1));
             $.each(data1, function(index, element) {
                 $('#basket').append('<a href="/product/' + element.productId + '.html">' + element.productId + ',' + element.quantity +'</a>');

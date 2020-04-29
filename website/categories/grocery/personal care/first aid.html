@@ -120,13 +120,13 @@
 
             var productId =  $(this).attr('id');
             alert('Clicked on ' + productId);
-            $.get("/public/api/v1/cart/ip", function(data, status){
+            $.get("/public/api/v1/cart/ip", {"time": new Date().getTime() },function(data, status){
                 alert('Your session id is ' + data );
 
-                $.post("/public/api/v1/cart/add", {'productId': productId, 'qty': '1'}, function(status){
+                $.post("/public/api/v1/cart/add", {"id": data , 'productId': productId, 'qty': '1', "time": new Date().getTime() }, function(status){
                     alert("Status: " + status);
 
-                    $.getJSON('/public/api/v1/cart/get', { }, function(data1) {
+                    $.getJSON('/public/api/v1/cart/get', {"id": data, "time": new Date().getTime() }, function(data1) {
                         alert(JSON.stringify(data1));
                         $.each(data1, function(index, element) {
 
