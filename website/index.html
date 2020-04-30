@@ -63,8 +63,22 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Test website</h1>
-        <p>Offers and stuff</p>
+      <div>
+       <br/>
+       <br/>
+       <form class="form-inline" id="merchantSearch">
+        <div class="form-group">
+          <label for="merch">Please enter your postcode to see products from local merchants</label>&nbsp;
+          <input type="text" class="form-control" id="merch" placeholder=" enter your postcode">&nbsp;
+        </div>
+        <button type="submit" class="btn btn-primary">submit</button>
+      </form>
+      </div>
+
+        <div class="list-group list-group-flush" id="nearbyMerchants">
+
+
+        </div>
 
       </div>
     </div>
@@ -83,6 +97,26 @@
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+
+
+    $("#merchantSearch").click(function(){
+
+                var postCode =  $('#merch').val();
+                alert('PostCode ' + postCode);
+                $.post("/public/api/v1/cart/setup", {'postCode': postCode, "time": new Date().getTime() }, function(status){
+                    alert("Status: " + status);
+
+                    $.getJSON('/api/v1/merchant/findMerchantPostCodesByDistance', {"postalCode": postCode, "time": new Date().getTime() }, function(data1) {
+                        alert(JSON.stringify(data1));
+                        $.each(data1, function(index, key, value) {
+                            $('#nearbyMerchants').append(key + '-' + value);
+                        });
+                    });
+                });
+            });
+
+
+
   </script>
 
 </body>

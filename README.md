@@ -12,7 +12,7 @@ sudo docker pull nginx
 
 run nginx for static website with custom config file
 
-sudo docker run --name docker-nginx -p 80:80 -v ~/fetch/site-generator/website:/usr/share/nginx/html -v ~/fetch/site-generator/website/nginx.conf:/etc/nginx/conf.d/default.conf -d nginx
+sudo docker run --rm --name docker-nginx -p 80:80 -v ~/fetch/site-generator/website:/usr/share/nginx/html -v ~/fetch/site-generator/website/nginx.conf:/etc/nginx/conf.d/default.conf -d nginx
 
 sudo docker ps
 
