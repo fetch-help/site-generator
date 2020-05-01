@@ -126,10 +126,10 @@
   </div>
   <!-- /#wrapper -->
 
+
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
   <!-- Menu Toggle Script -->
   <script>
     $("#menu-toggle").click(function(e) {
@@ -150,9 +150,7 @@
 
                     $.getJSON('/public/api/v1/cart/get', {"id": data, "time": new Date().getTime() }, function(data1) {
                         alert(JSON.stringify(data1));
-                        $.each(data1, function(index, element) {
 
-                        });
                     });
                 });
             });

@@ -75,7 +75,7 @@
       </form>
       </div>
 
-        <div class="list-group list-group-flush" id="nearbyMerchants">
+        <div id="nearbyMerchants">
 
 
         </div>
@@ -87,9 +87,28 @@
   </div>
   <!-- /#wrapper -->
 
+<script id="table-template" type="text/x-handlebars-template">
+    <h4></h4>
+    <table class="table table-responsive-sm">
+      <thead>
+        <tr>
+          <th scope="col">Merchant Postcode</th>
+          <th scope="col">Distance (miles)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#postCodes}}
+            <tr><td>{{postCode}}</td><td>{{distance}}</td></tr>
+        {{/postCodes}}
+      </tbody>
+    </table>
+</script>
+
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
 
   <!-- Menu Toggle Script -->
   <script>
@@ -98,22 +117,19 @@
       $("#wrapper").toggleClass("toggled");
     });
 
+    $("#merchantSearch").submit(function(e){
+        e.preventDefault();
+        var postCode =  $('#merch').val();
+        $.post("/public/api/v1/cart/setup", {'postCode': postCode, "time": new Date().getTime() }, function(status){
 
-    $("#merchantSearch").click(function(){
+            $.getJSON('/api/v1/merchant/findMerchantPostCodesByDistance', {"postalCode": postCode, "time": new Date().getTime() }, function(data1) {
+                var tableTemplate = Handlebars.compile($("#table-template").html());
+                var rendered = tableTemplate(data1);
+                document.getElementById('nearbyMerchants').innerHTML = rendered;
 
-                var postCode =  $('#merch').val();
-                alert('PostCode ' + postCode);
-                $.post("/public/api/v1/cart/setup", {'postCode': postCode, "time": new Date().getTime() }, function(status){
-                    alert("Status: " + status);
-
-                    $.getJSON('/api/v1/merchant/findMerchantPostCodesByDistance', {"postalCode": postCode, "time": new Date().getTime() }, function(data1) {
-                        alert(JSON.stringify(data1));
-                        $.each(data1, function(index, key, value) {
-                            $('#nearbyMerchants').append(key + '-' + value);
-                        });
-                    });
-                });
             });
+        });
+    });
 
 
 
